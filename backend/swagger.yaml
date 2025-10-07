@@ -1,0 +1,58 @@
+openapi: 3.0.0
+info:
+  title: Avios Price Points API
+  version: 1.0.0
+  description: API to calculate Avios price points for flight bookings
+paths:
+  /api/price-points:
+    post:
+      summary: Calculate Avios price points
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                DepartureAirportCode:
+                  type: string
+                ArrivalAirportCode:
+                  type: string
+                DepartureTime:
+                  type: string
+                ArrivalTime:
+                  type: string
+                Price:
+                  type: number
+                Currency:
+                  type: string
+              required:
+                - DepartureAirportCode
+                - ArrivalAirportCode
+                - DepartureTime
+                - ArrivalTime
+                - Price
+                - Currency
+      responses:
+        "200":
+          description: Price points calculated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  pricePoints:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        discountPercent:
+                          type: number
+                        cashDiscount:
+                          type: number
+                        aviosRequired:
+                          type: number
+        "400":
+          description: Invalid request
+        "500":
+          description: Internal server error
