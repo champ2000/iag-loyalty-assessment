@@ -44,12 +44,26 @@ The Avios points required for each discount are calculated based on the flight r
 
 ## Environment Variables
 
-Create a `.env` file in the root directory:
+1. Copy the example environment file:
+   ```bash
+   cp .env.example .env
+   ```
 
+2. Modify the `.env` file with your specific configuration:
+
+```properties
+# Backend Configuration
+NODE_ENV=development        # development, production, or test
+PORT=3000                  # Port for the backend API
+LOG_LEVEL=info            # debug, info, warn, or error
+CORS_ORIGIN=http://localhost:3001  # Frontend URL for CORS
+
+# Frontend Configuration
+VITE_API_URL=http://localhost:3000  # Backend API URL
+VITE_API_TIMEOUT=5000     # API timeout in milliseconds
 ```
-PORT=3000
-NODE_ENV=development
-```
+
+Note: Never commit the `.env` file to version control. The `.env.example` file is provided as a template.
 
 ## API Documentation
 
